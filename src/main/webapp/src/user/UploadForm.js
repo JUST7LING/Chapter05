@@ -1,6 +1,5 @@
 
 import React, { useState, useRef } from 'react';
-import styles from '../css/uploadForm.module.css';
 import axios from 'axios';
 import image from '../image/whatshold.gif';
 import camera from '../image/camera.png';
@@ -16,7 +15,7 @@ const UploadForm = () => {
         imageOriginalName: ''
     })
 
-    const {imageName, imageContent, imageFileName, imageOriginalName} = userUploadDTO
+    const {imageName, imageContent} = userUploadDTO
 
     const [file, setFile] = useState('')
    //  const [showImgSrc, setShowImgSrc] = useState('')
@@ -59,6 +58,8 @@ const UploadForm = () => {
         imageFiles.map( item => {
             const objectURL = URL.createObjectURL(item)
             imgArray.push(objectURL)
+
+            return null;
         })
 
         setImageList(imgArray) // 파일 첨부 시 이미지 미리보기 
@@ -79,6 +80,7 @@ const UploadForm = () => {
       */
         Object.values(file).map((item, index) => {
             formData.append('img', item)
+            return null;
         })
 
         axios.post('/user/upload', formData, {
@@ -133,7 +135,7 @@ const UploadForm = () => {
                             <img id="camera" src={camera} alt="카메라" onClick = {goAttatch} style={{width:50}} />
                             <span>
                                 {
-                                    imageList.map((item, index) => <img key = {index} src = {item} style = {{width: '40px', height: '40px'}}/>)
+                                    imageList.map((item, index) => <img key = {index} src = {item} style = {{width: '40px', height: '40px'}} alt = ''/>)
                                 }
                             </span>
                             <input id="img" type="file" name="img[]" multiple = 'multiple' style={{visibility: "hidden"}} ref = {imgRef}

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import css from '../css/updatecss.css';
 import axios from 'axios';
 import image from '../image/whatshold.gif';
 
@@ -92,7 +91,6 @@ const UpdateForm = () => {
         }
     }
 
-    const imgStyle = {width: 150, textAlign: 'left'}
     return (
         <div id = 'disp'>
             <Link to = '/user/list'><img id = 'imageZone' src = {image} alt = '이미지 없당' /></Link>

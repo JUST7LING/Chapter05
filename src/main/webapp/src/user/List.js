@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import css from '../css/listcss.css';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const List = () => {
     const [list, setList] = useState([])
@@ -11,13 +10,6 @@ const List = () => {
     const [words, setWords] = useState('')
     const [type, setType] = useState('name')
     const [didSearch, setDidSearch] = useState(false) // 검색을 실행한 상태인지 확인한다.
-    const navigate = useNavigate()
-
-
-    const tStyle = {width: 450, margin: 30, padding: 5, border: '1px solid green'}
-    useEffect(()=> {
-        setWant(0)
-    }, [didSearch])
 
     useEffect(() => {
 
@@ -57,7 +49,7 @@ const List = () => {
                     console.log("current pg is " +currentPg)
                 })
                 .catch(e => console.log(e)) // ============== false
-    }, [want, didSearch])
+    }, [want, didSearch, currentPg, pgArr, type, words])
 
     const settingWant = (e) => {
         var nextPg = e.target.text
@@ -89,8 +81,6 @@ const List = () => {
     }
 
 
-    const trStyle = {textAlign: 'center', border: '1px solid black', borderTop: 'none', borderRight: 'none', borderLeft: 'none'}
-    const thStyle = {textAlign: 'center', border: '2px double black', borderTop: 'none', borderRight: 'none', borderLeft: 'none', marginBottom: 15}
     return (
         <div>
           <table>
@@ -125,7 +115,7 @@ const List = () => {
             <p style = {{width: '650px', textAlign: 'center'}}>
                 {
                     pgArr.map(item => <span key = {item} onClick = {settingWant}>
-                        <Link className = {item==currentPg ? 'currentPaging' : 'why'} >{item}</Link>
+                        <Link className = {item===currentPg ? 'currentPaging' : 'why'} >{item}</Link>
                         {/* 원래 to={`/user/list/${want}`} 가 있었는데 뺐더니까 잘 작동
                             getMapping으로 list를 주려면 파라메터 페이지 값을 꼭 줘야 하는데,
                             나는 useEffect에서 want(페이지 링크)값이 바뀔 때마다 post로 값을 받아오도록 함.

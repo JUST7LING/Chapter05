@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import styles from '../css/WriteForm.module.css';
 import axios from 'axios';
 import image from '../image/whatshold.gif';
 import { Link, useNavigate } from 'react-router-dom';
@@ -71,7 +70,7 @@ const WriteForm = () => {
         if(sw === 1 && idDiv === '사용 가능'){
             console.log('간다!')
             
-            const params = {name: name, id: id, pwd: password}
+         //   const params = {name: name, id: id, pwd: password}
                         // proxy modified
             axios.post('/user/write', null, { // 두 번째 인자가 뭐지? 
                params: {
