@@ -66,6 +66,7 @@ const List = () => {
     const inputType = (e) => {
         const {value} = e.target
         setType(value)
+        console.log('231116-CD Test console')
         console.log('function inputType'  + value)
     } 
     const inputWord = (e) => {
